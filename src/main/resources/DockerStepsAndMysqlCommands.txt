@@ -1,0 +1,23 @@
+# command to launch up mysql as a docker container
+
+docker run --detach --env MYSQL_ROOT_PASSWORD=dummypassword --env MYSQL_USER=social-media-user --env MYSQL_PASSWORD=dummypassword --env MYSQL_DATABASE=social-media-database --name mysql --publish 3306:3306 mysql:8-oracle
+
+# Steps to connect your application to MySQL DB
+
+1. download & install docker for windows
+2. run the above command in terminal to create the image 'mysql:8-oracle'
+3. setup spring data source properties in application.properties for mysql db connection
+
+Note : If your application is not talking to an in memory db (eq. MySQL or Oracle DB), 
+Spring Boot Auto Configuration will not be able to create tables just by looking at an @Entity mapped class.
+We want Spring Boot Auto Configuration to create all the tables for us, property for which is given below
+
+4. spring.jpa.hibernate.ddl-auto=update
+This ensures that at the startup of the application, based on the entities that are present, 
+the DB schema will be updated.
+
+5. spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+We also want to configure the dialect we want to use.
+
+Note : The data entered in MySQL DB is permanent, unlike H2 DB
+
