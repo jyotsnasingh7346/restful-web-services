@@ -1,2 +1,2 @@
 # restful-web-services
-restful-web-services repo from Restful Workspace
+restful-web-services repo of Restful Workspace
