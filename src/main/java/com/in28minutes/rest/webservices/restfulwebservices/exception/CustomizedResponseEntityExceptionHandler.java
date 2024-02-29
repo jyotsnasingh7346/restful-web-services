@@ -32,7 +32,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 	public final ResponseEntity<Object> handleAllException(Exception ex, WebRequest request) throws Exception {
 		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
 		
-		return new ResponseEntity(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	// 2. For UserNotFoundException, I want not found exception to be thrown
@@ -52,7 +52,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), 
 				"Total errors: " + ex.getErrorCount() + " " + ex.getMessage(), request.getDescription(false));
 		
-		return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
 	}
 
 }
